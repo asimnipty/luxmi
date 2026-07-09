@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bisharod/luxmi
+    - /bin/cp -R * $DEPLOYPATH
