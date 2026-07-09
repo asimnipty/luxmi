@@ -1,0 +1,518 @@
+import { Recipe, HandiCraft, BlogPost, VideoItem } from "./types";
+
+export const RECIPES: Recipe[] = [
+  {
+    id: "rec_1",
+    title: "Traditional Dudh Chitoi Pitha (Milk-Soaked Rice Cakes)",
+    category: "Dessert",
+    prepTime: 20,
+    cookTime: 30,
+    difficulty: "Medium",
+    ingredients: [
+      "2 cups Rice Flour (freshly ground)",
+      "1 cup Warm water",
+      "1/2 tsp Salt",
+      "4 cups Full-fat milk",
+      "1 cup Date-palm syrup (Khejur Gur)",
+      "2 tbsp Grated coconut"
+    ],
+    instructions: [
+      "In a blender or mixing bowl, combine rice flour, salt, and warm water. Blend into a smooth, aerated batter of pouring consistency.",
+      "Heat a clay or cast-iron chitoi pitha pan. Pour a ladle of batter, cover, and cook for 3-4 minutes until porous and fluffy.",
+      "In a separate heavy pot, simmer full-fat milk until slightly reduced.",
+      "Remove the milk from heat, let it cool slightly, then stir in date-palm syrup (Khejur Gur) to prevent curdling.",
+      "Add the hot, porous chitoi pithas directly into the warm sweetened milk mixture.",
+      "Let them soak overnight or for at least 4 hours so they absorb the sweet milk and become spongy.",
+      "Garnish with freshly grated coconut and serve."
+    ],
+    image: "https://i.ytimg.com/vi/spQDSPX9xR4/hqdefault.jpg",
+    description: "A beloved traditional Bengali winter sweet: spongy, highly porous Chitoi Pitha soaked overnight in rich cardamom-infused milk and sweet date-palm syrup.",
+    tags: ["Winter Sweets", "Pitha Recipe", "Bengali Dessert", "Traditional"],
+    tips: [
+      "Always let the milk cool slightly before adding Gur (jaggery) to prevent the milk from curdling.",
+      "The batter must be light and airy so the pithas develop beautiful pores to absorb the milk."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=spQDSPX9xR4"
+  },
+  {
+    id: "rec_2",
+    title: "Bengali Macher Jhol (Authentic Fish Curry)",
+    category: "Main Course",
+    prepTime: 15,
+    cookTime: 20,
+    difficulty: "Medium",
+    ingredients: [
+      "4 slices of Fresh Fish (such as Tilapia, Rohu, or Catfish)",
+      "1/2 tsp Turmeric powder",
+      "1/2 tsp Red chili powder",
+      "1 tsp Cumin paste or powder",
+      "1 tsp Ginger paste",
+      "2 Green chilies, slit",
+      "3 tbsp Mustard oil",
+      "1 tsp Kalonji (nigella seeds)",
+      "Salt to taste",
+      "Fresh coriander leaves"
+    ],
+    instructions: [
+      "Clean and wash the fish slices, then marinate with salt and a pinch of turmeric powder.",
+      "Heat mustard oil in a pan until smoking hot, then fry the fish slices lightly on both sides. Set aside.",
+      "In the same oil, add kalonji (nigella seeds) and slit green chilies.",
+      "Mix turmeric, red chili, ginger paste, and cumin paste with a splash of water, then pour into the pan.",
+      "Sauté the spice paste until the oil separates, then add warm water to make a light gravy.",
+      "Slide the fried fish slices into the simmering gravy, cover, and cook on medium heat for 8-10 minutes.",
+      "Garnish with freshly chopped coriander leaves and serve hot with steamed rice."
+    ],
+    image: "https://i.ytimg.com/vi/ZsBh1X63z20/hqdefault.jpg",
+    description: "A simple, authentic homestyle fish curry prepared using a universal, fail-proof Bengali cooking technique that works perfectly with any fresh fish.",
+    tags: ["Fish Curry", "Macher Jhol", "Bengali Main Course", "Traditional"],
+    tips: [
+      "Frying fish on high heat prevents it from sticking to the pan or breaking.",
+      "Mustard oil is essential to get the signature pungent and aromatic flavor of Bengali macher jhol."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=ZsBh1X63z20"
+  },
+  {
+    id: "rec_3",
+    title: "Crispy Stuffed Aloo Paratha (Two Folding Styles)",
+    category: "Snack",
+    prepTime: 20,
+    cookTime: 15,
+    difficulty: "Medium",
+    ingredients: [
+      "2 cups Wheat flour (Atta)",
+      "3 Potatoes, boiled and mashed",
+      "1 chopped Green chili",
+      "1/2 tsp Roasted cumin powder",
+      "1/2 tsp Chaat masala",
+      "1 tbsp Butter or Ghee for roasting",
+      "Salt to taste",
+      "Fresh coriander leaves, finely chopped"
+    ],
+    instructions: [
+      "Knead wheat flour with a pinch of salt and water into a soft, pliable dough. Rest for 15 minutes.",
+      "Mix mashed potatoes, chopped green chili, roasted cumin powder, chaat masala, salt, and coriander in a bowl.",
+      "Style 1 (Double Disc): Roll two thin small rotis, place stuffing on one, cover with the other, and pinch the edges tightly.",
+      "Style 2 (Kachori Pleats): Roll one thick disk, place potato ball in center, gather the edges to seal, and roll out gently.",
+      "Place on a hot tawa (griddle) and dry-roast on both sides for 1 minute.",
+      "Apply a dollop of ghee or butter and roast until beautifully golden-brown and crispy on both sides.",
+      "Serve hot with fresh yogurt, butter, or mango pickle."
+    ],
+    image: "https://i.ytimg.com/vi/9g5bqp3AdKw/hqdefault.jpg",
+    description: "Learn two distinct fail-proof techniques to roll and fold perfect, non-bursting, pillowy potato-stuffed flatbreads (Aloo Parathas) easily at home.",
+    tags: ["Flatbread", "Aloo Paratha", "Breakfast", "Indian Snacks"],
+    tips: [
+      "Ensure the mashed potato stuffing has absolutely no lumps to prevent the parathas from tearing while rolling.",
+      "Let the potato mixture cool down completely before stuffing it into the dough."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=9g5bqp3AdKw"
+  },
+  {
+    id: "rec_4",
+    title: "Refreshing Sweet-Sour Aamer Tok (Green Mango Broth)",
+    category: "Beverage",
+    prepTime: 10,
+    cookTime: 10,
+    difficulty: "Easy",
+    ingredients: [
+      "1 Green Mango, peeled and sliced",
+      "1/2 tsp Mustard seeds",
+      "1 Dry red chili",
+      "1/4 tsp Turmeric powder",
+      "1/2 cup Sugar (adjust according to mango sourness)",
+      "1 tbsp Mustard oil",
+      "Salt to taste",
+      "2 cups Water"
+    ],
+    instructions: [
+      "Heat mustard oil in a small pan, temper with mustard seeds and one dried red chili.",
+      "Add the green mango slices, salt, and turmeric powder. Sauté for 2-3 minutes until lightly softened.",
+      "Pour in water, cover, and bring to a boil. Simmer until mango slices are completely tender.",
+      "Stir in sugar and continue cooking on medium heat for another 3 minutes until the broth thickens slightly.",
+      "Chill in the refrigerator for at least 1 hour.",
+      "Serve cold as a refreshing, palate-cleansing sweet-sour beverage or meal accompaniment during hot summers.",
+    ],
+    image: "https://i.ytimg.com/vi/I0wbcBJNVoA/hqdefault.jpg",
+    description: "A traditional, light sweet-and-sour raw green mango summer broth (Ombol / Aamer Tok), perfect for refreshing hot summer afternoons.",
+    tags: ["Summer Broth", "Green Mango", "Palate Cleanser", "Sweet and Sour"],
+    tips: [
+      "Adjust the quantity of sugar depending on how sour your green mangoes are.",
+      "This soup can be served at room temperature or chilled in the fridge before serving."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=I0wbcBJNVoA"
+  }
+];
+
+export const HANDICRAFTS: HandiCraft[] = [
+  {
+    id: "craft_1",
+    title: "Traditional Rice Flour Crafting at Home",
+    category: "Kitchen DIY",
+    timeRequired: 40,
+    difficulty: "Easy",
+    materials: [
+      "2 cups Basmati or Atap rice",
+      "Water for soaking",
+      "A flat strainer or cotton cloth",
+      "High-speed mixer blender",
+      "Fine mesh flour sifter"
+    ],
+    steps: [
+      "Wash the rice thoroughly under cold water 3-4 times until the water runs clear.",
+      "Soak the washed rice in clean water for 2 hours to soften the grains.",
+      "Drain the water completely using a strainer, then spread the rice on a clean dry cotton cloth under a fan for 30 minutes. It should feel damp but not wet.",
+      "Transfer the semi-dry rice in batches to a dry high-speed blender jar.",
+      "Grind on high speed for 1-2 minutes into a very fine powder.",
+      "Sift the ground flour through a fine mesh sifter to separate any coarse grains.",
+      "Re-grind any leftover coarse grains. Store the fresh, aromatic rice flour in an airtight glass jar for making delicious winter pithas."
+    ],
+    image: "https://i.ytimg.com/vi/VNWyWn-fQTk/hqdefault.jpg",
+    description: "A simple step-by-step masterclass demonstrating the kitchen-craft of washing, soaking, drying, and grinding perfect rice flour for pitha making.",
+    tags: ["Eco-Friendly DIY", "Kitchen Craft", "Flour Making", "Pitha Prep"],
+    tips: [
+      "Do not dry the rice too much; it must retain about 10-15% moisture to grind into perfect soft pitha flour.",
+      "Store in the refrigerator if you intend to keep it for more than a couple of weeks."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=VNWyWn-fQTk"
+  },
+  {
+    id: "craft_2",
+    title: "Mess-Free Raw Jackfruit Cutting & Prep",
+    category: "Kitchen DIY",
+    timeRequired: 25,
+    difficulty: "Medium",
+    materials: [
+      "Fresh Raw Jackfruit (Echor)",
+      "2 tbsp Mustard oil (for hands & knife)",
+      "Sharp kitchen knife or Boti",
+      "A bowl of water with salt & turmeric",
+      "Newspaper or cutting board liner"
+    ],
+    steps: [
+      "Spread old newspaper on your working surface to catch any sticky sap (latex) dripping from the jackfruit.",
+      "Rub a generous amount of mustard oil on both hands and on the blades of your knife. Mustard oil neutralizes the sticky sap.",
+      "Cut the jackfruit into thick circular wheels.",
+      "Peel off the green thorny outer skin of each wheel carefully.",
+      "Cut out the tough white fibrous central core (as it is not edible) and discard.",
+      "Chop the tender flesh and seeds into bite-sized cubes.",
+      "Immediately drop the chopped cubes into a bowl of water mixed with salt and turmeric to prevent discoloration."
+    ],
+    image: "https://i.ytimg.com/vi/g_MSCeriq8c/hqdefault.jpg",
+    description: "Smart, ancient kitchen-craft tricks to cut sticky raw jackfruit without any mess. Discover the traditional oil-based hand-craft technique.",
+    tags: ["Kitchen Hacks", "Fruit Prep", "Traditional DIY", "Raw Jackfruit"],
+    tips: [
+      "Turmeric water prevents the cut jackfruit pieces from turning black due to oxidation.",
+      "If sticky sap gets on your skin, rub more mustard oil or vegetable oil to dissolve it easily."
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=g_MSCeriq8c"
+  },
+  {
+    id: "craft_3",
+    title: "Traditional Dry-Roasted Jackfruit Seeds",
+    category: "Kitchen DIY",
+    timeRequired: 20,
+    difficulty: "Easy",
+    materials: [
+      "1 cup Jackfruit seeds (cleaned & dried)",
+      "Heavy cast-iron skillet or clay stove skillet",
+      "A pinch of salt & water (optional)"
+    ],
+    steps: [
+      "Collect fresh seeds from ripe jackfruits, wash them thoroughly to remove any sticky fruit membrane.",
+      "Spread the seeds on a plate and dry them in direct sunlight for 1-2 days until the outer white paper-thin shell is completely dry.",
+      "Heat a heavy-bottomed cast-iron skillet on medium heat.",
+      "Add the dry jackfruit seeds and dry-roast them, stirring frequently.",
+      "Roast for 12-15 minutes until the white outer shell starts cracking and brown/char spots appear on the inner brown skin.",
+      "Test by pressing a seed; it should feel soft and floury inside when cooked through.",
+      "Peel off the outer white skin and enjoy these hot, nutty, high-protein traditional country snacks with a pinch of salt."
+    ],
+    image: "https://i.ytimg.com/vi/PpRAUa4YeiM/hqdefault.jpg",
+    description: "An ancient country snack: step-by-step hand-craft guide to cleaning, drying, and dry-roasting jackfruit seeds to perfection.",
+    tags: ["Rustic DIY", "Snack Craft", "Eco-friendly", "Traditional"],
+    tips: [
+      "Do not peel the outer skin before roasting; the outer shell protects the seed from burning and makes it easy to steam-cook inside.",
+      "These roasted seeds can also be mashed with mustard oil and green chilies to make a delicious Jackfruit Seed Bharta!"
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=PpRAUa4YeiM"
+  }
+];
+
+export const BLOGS: BlogPost[] = [
+  {
+    id: "blog_1",
+    title: "The Art of Plate Decoration: 5 Simple Tips from My Kitchen",
+    category: "Food Styling",
+    date: "June 24, 2026",
+    author: "Luxmi",
+    readTime: "4 min read",
+    summary: "Elevate your daily home-cooked meals into beautiful fine-dining experiences. Learn the secrets of negative space, organic curves, and edible garnishes.",
+    image: "https://i.ytimg.com/vi/FVrZvwaqxgU/hqdefault.jpg",
+    tags: ["Food Styling", "Plating", "Kitchen Tips", "Aesthetics"],
+    content: [
+      "We eat with our eyes first! A beautifully styled plate doesn't require gourmet ingredients or professional training. It simply requires a little awareness of balance, contrast, and layout. Here are the 5 foundational concepts I use every day to plate my recipes for the YouTube channel.",
+      "1. Embrace Negative Space: Do not overcrowd your plate. Leave at least 30% of the plate entirely empty. This acts as a visual border, directing the guest's eye immediately to the beauty of the food itself.",
+      "2. Serve in Odd Numbers: Whether you are serving samosas, dumplings, or sweets, plating them in odd numbers (3s or 5s) creates an organic asymmetry that is far more appealing to the human eye than rigid, even columns.",
+      "3. Play with Heights: Flat food looks uninspired. Build height on your plate! Stack your grilled veggies, rest your cutlet diagonally against a small hill of rice, or arrange your dessert with varying vertical details.",
+      "4. The Rule of Sauce Sweeps: Never just splash sauce. Use a heavy-duty spoon to place a dollop of chutney or sauce, then drag the back of the spoon in a sweeping crescent-shaped curve across the ceramic plate. It looks professional and artistic.",
+      "5. Contrast is King: If your main dish is yellow or cream-colored, serve it on a deep blue or charcoal clay plate. Sprinkle bright red pomegranate seeds, green mint leaves, or golden saffron strands to introduce a pop of life. Try incorporating these steps into your dinner tonight!"
+    ]
+  },
+  {
+    id: "blog_2",
+    title: "Eco-Friendly Organizing: Creating Storage from Upcycled Glass & Clay",
+    category: "Kitchen Hacks",
+    date: "May 12, 2026",
+    author: "Luxmi",
+    readTime: "5 min read",
+    summary: "Stop buying expensive plastic containers! Discover how to transform everyday kitchen jars, bottles, and earthen pots into customized spice storage.",
+    image: "https://i.ytimg.com/vi/pOD8Ih4WDQM/hqdefault.jpg",
+    tags: ["Eco-Friendly", "Organization", "DIY Storage", "Kitchen Hacks"],
+    content: [
+      "An organized kitchen brings peace to cooking. But you don't need to purchase plastic organizing baskets or high-end containers to get that aesthetically pleasing layout. In fact, natural glass jars, braided jute rope, and rustic clay items are more sustainable and look ten times more beautiful.",
+      "First, gather empty jam jars, olive bottles, or coconut oil containers. Soak them in warm water with baking soda and dish soap to easily peel off any sticky paper labels.",
+      "Next, use simple jute rope or cotton cords. Wrap them tightly around the neck of the jars, securing with a touch of hot glue. This gives them a uniform, cozy farmhouse look.",
+      "To label your jars, don't use printed plastic tape. Instead, cut small rectangular pieces of brown kraft paper, write the name of the spice in black ink, and tie it around the neck with a piece of twine, or paste it using a non-toxic homemade flour paste.",
+      "Earthen clay bowls can also be used as custom drawer dividers. Place small clay shallow bowls inside your silverware drawer to hold loose items like tea infusers, rubber bands, bag clips, or dynamic spices. It adds a natural element to a hidden drawer, making organization feel grounded."
+    ]
+  },
+  {
+    id: "blog_3",
+    title: "Setting the Festive Table: Pairing Handmade Crafts with Traditional Food",
+    category: "Handmade Design",
+    date: "April 08, 2026",
+    author: "Luxmi",
+    readTime: "6 min read",
+    summary: "Host unforgettable festive dinners by pairing hand-crafted elements like origami tulips, handmade terracotta coasters, and custom-folded napkins.",
+    image: "https://i.ytimg.com/vi/fQcZJamCia8/hqdefault.jpg",
+    tags: ["Table Setting", "Festive Decor", "Paper Crafts", "Hospitality"],
+    content: [
+      "Food brings people together, but a beautifully crafted table setting keeps them talking and lingering. Whenever I host close family or festive get-togethers, I ensure that the table layout is as much an art piece as the recipes.",
+      "I love to use natural fabrics. A simple runner made of unbleached cotton or linen acts as the perfect canvas. On top, lay down your handmade Braided Jute Coasters to support hot curry bowls. The raw texture of jute pairs beautifully with brass or earthenware dinner sets.",
+      "Instead of store-bought place card holders, I fold pastel-colored Origami Tulips (as detailed in our handicraft section) and slide handwritten name tags in them. Placing one on each guest's plate shows immense care and adds a beautiful 3D element.",
+      "Bring in elements of nature: Arrange a few dried twigs, pine cones, or seasonal wild flowers in painted glass bottles of varying heights down the center of the table. Keep them low so guests can easily make eye contact across the table.",
+      "Soft ambient lighting completes the experience. Place tea-lights inside painted clay Kullhads—the porous clay emits a warm, diffused, golden glow that instantly makes the room feel cozy. Creating these handmade touches doesn't cost much but leaves an everlasting impression on your loved ones."
+    ]
+  }
+];
+
+export const VIDEOS: VideoItem[] = [
+  {
+    id: "vid_1",
+    title: "Deros Recipe | Daros Vaja Recipe | Bhindi Vaji | Okra Fry | ঢেঁড়স ভাজি | @Luxmisculinary",
+    youtubeId: "Jx4nsgQFweU",
+    category: "Culinary",
+    duration: "4:30",
+    description: "Perfect crispy non-sticky bhindi (okra) fry cooked with simple home spices and minimal oil. Discover the traditional Bengali tempering secrets.",
+    publishDate: "July 01, 2026",
+    thumbnail: "https://img.youtube.com/vi/Jx4nsgQFweU/hqdefault.jpg"
+  },
+  {
+    id: "vid_2",
+    title: "How to Roast Jackfruit Seeds | কাঁঠালের বিচি ভাজা রেসিপি | Jackfruit seeds fry | @Luxmisculinary",
+    youtubeId: "PpRAUa4YeiM",
+    category: "Handicraft",
+    duration: "3:01",
+    description: "An ancient country snack: step-by-step hand-craft guide to shelling, drying, and perfectly dry-roasting jackfruit seeds over a clay stove.",
+    publishDate: "June 28, 2026",
+    thumbnail: "https://img.youtube.com/vi/PpRAUa4YeiM/hqdefault.jpg"
+  },
+  {
+    id: "vid_3",
+    title: "Koi Macher Recipe | Tel Koi Recipe | Koi Fish Curry | কৈ মাছের তেল কৈ রেসিপি | @Luxmisculinary",
+    youtubeId: "hEJyhyprx1w",
+    category: "Culinary",
+    duration: "3:51",
+    description: "Learn the royal Bengali Tel Koi recipe. Authentic climbing perch fish curry with a sharp, aromatic sauce made of mustard oil and fresh ginger.",
+    publishDate: "June 25, 2026",
+    thumbnail: "https://img.youtube.com/vi/hEJyhyprx1w/hqdefault.jpg"
+  },
+  {
+    id: "vid_4",
+    title: "নোনা ইলিশ রেসিপি | Nona Ilish Recipe | নোনা ইলিশ কিভাবে ধুতে ও রান্না করতে হয় | @Luxmisculinary",
+    youtubeId: "kZuP60T76nI",
+    category: "Culinary",
+    duration: "5:48",
+    description: "The legendary salted Hilsa (Nona Ilish) prepared in authentic style. A beloved traditional delicacy with heavy aromatics.",
+    publishDate: "June 20, 2026",
+    thumbnail: "https://img.youtube.com/vi/kZuP60T76nI/hqdefault.jpg"
+  },
+  {
+    id: "vid_5",
+    title: "কাঁচা কাঁঠাল বা এঁচোড় সংরক্ষণ পদ্ধতি | How to store jackfruit in fridge | @Luxmisculinary",
+    youtubeId: "pOD8Ih4WDQM",
+    category: "Handicraft",
+    duration: "3:37",
+    description: "An essential kitchen-craft guide to peeling, prepping, and preserving sticky raw jackfruit (echor) in the fridge for long-term usage.",
+    publishDate: "June 18, 2026",
+    thumbnail: "https://img.youtube.com/vi/pOD8Ih4WDQM/hqdefault.jpg"
+  },
+  {
+    id: "vid_6",
+    title: "Khuder Bhat Recipe | বউ ভাত | Broken Rice Recipe | খুদের ভাত রান্নার রেসিপি | @Luxmisculinary",
+    youtubeId: "b3sEB99THoc",
+    category: "Culinary",
+    duration: "3:45",
+    description: "Traditional comforting broken rice dish served with spicy hand-pounded chutneys and mashed vegetables.",
+    publishDate: "June 15, 2026",
+    thumbnail: "https://img.youtube.com/vi/b3sEB99THoc/hqdefault.jpg"
+  },
+  {
+    id: "vid_7",
+    title: "আলু ও বাটার দিয়ে দারুণ স্বাদের ঘরোয়া মুরগির মাংসের ঝোল রেসিপি | Chicken Ranna | @Luxmisculinary",
+    youtubeId: "Lu7RLl5dv7I",
+    category: "Culinary",
+    duration: "4:32",
+    description: "Simple yet exceptionally flavorful homestyle chicken curry cooked with large potatoes and traditional spice pastes.",
+    publishDate: "June 10, 2026",
+    thumbnail: "https://img.youtube.com/vi/Lu7RLl5dv7I/hqdefault.jpg"
+  },
+  {
+    id: "vid_8",
+    title: "পাটিসাপটা পিঠা রেসিপি | Patisapta Recipe | চিতই পিঠা রেসিপি | Pitha Recipe | @Luxmisculinary",
+    youtubeId: "jd5oVb_8ScU",
+    category: "Culinary",
+    duration: "4:30",
+    description: "Step-by-step masterclass of making paper-thin Patisapta pitha rolls filled with velvety sweet kheer and fresh grated coconut.",
+    publishDate: "June 05, 2026",
+    thumbnail: "https://img.youtube.com/vi/jd5oVb_8ScU/hqdefault.jpg"
+  },
+  {
+    id: "vid_9",
+    title: "Cake Recipe Bangla | Cake Recipe Without Oven | Cake Recipe at Home | @Luxmisculinary",
+    youtubeId: "dC3aBWx_PMc",
+    category: "Culinary",
+    duration: "5:31",
+    description: "Extremely fluffy vanilla sponge cake baked in a standard cooking pot at home. No oven or fancy tools required.",
+    publishDate: "June 01, 2026",
+    thumbnail: "https://img.youtube.com/vi/dC3aBWx_PMc/hqdefault.jpg"
+  },
+  {
+    id: "vid_10",
+    title: "আমের আচার রেসিপি | Mango Pickle recipe in bangla | Amer Achar | Achar Recipe | @Luxmisculinary",
+    youtubeId: "PGcdIPU_f5k",
+    category: "Handicraft",
+    duration: "5:20",
+    description: "Pungent and tangy Bengali green mango pickle (Amer Achar) seasoned with custom-toasted spices and aged in traditional mustard oil.",
+    publishDate: "May 25, 2026",
+    thumbnail: "https://img.youtube.com/vi/PGcdIPU_f5k/hqdefault.jpg"
+  },
+  {
+    id: "vid_11",
+    title: "Fish Curry | Macher Jhol | একই পদ্ধতিতে যেকোন মাছের ঝোল রান্নার রেসিপি | @Luxmisculinary",
+    youtubeId: "ZsBh1X63z20",
+    category: "Culinary",
+    duration: "3:48",
+    description: "A universal, fail-proof technique to cook any fresh fish curry perfectly with rich, flavorful light gravy.",
+    publishDate: "May 20, 2026",
+    thumbnail: "https://img.youtube.com/vi/ZsBh1X63z20/hqdefault.jpg"
+  },
+  {
+    id: "vid_12",
+    title: "Aamer Tok | কাঁচা আমের টক | Kancha Amer Ombol | Amer Ambol | @Luxmisculinary",
+    youtubeId: "I0wbcBJNVoA",
+    category: "Culinary",
+    duration: "2:11",
+    description: "Sweet and sour green mango broth recipe, perfect for refreshing hot summer afternoons.",
+    publishDate: "May 15, 2026",
+    thumbnail: "https://img.youtube.com/vi/I0wbcBJNVoA/hqdefault.jpg"
+  },
+  {
+    id: "vid_13",
+    title: "কাঁচা কাঁঠাল কাটার সহজ উপায় | How to cut,clean and preserve raw jackfruit | @Luxmisculinary",
+    youtubeId: "g_MSCeriq8c",
+    category: "Handicraft",
+    duration: "3:50",
+    description: "Smart tricks to cut sticky raw jackfruit without any mess. Clean, oil-based hand-craft technique.",
+    publishDate: "May 10, 2026",
+    thumbnail: "https://img.youtube.com/vi/g_MSCeriq8c/hqdefault.jpg"
+  },
+  {
+    id: "vid_14",
+    title: "Kashmiri Achar Recipe | Kashmiri amer achar recipe | Amer Achar/ Mango Pickle | @Luxmisculinary",
+    youtubeId: "yc8czYIN8i8",
+    category: "Handicraft",
+    duration: "4:15",
+    description: "How to craft exquisite sweet-sour Kashmiri mango pickle at home. Perfect sun-dried technique for a long shelf-life.",
+    publishDate: "May 05, 2026",
+    thumbnail: "https://img.youtube.com/vi/yc8czYIN8i8/hqdefault.jpg"
+  },
+  {
+    id: "vid_15",
+    title: "নোনা ইলিশ ও মিষ্টি কুমড়ো/কুমড়া | Salted Hilsa Fish Head with Pumpkin | Nona ilish | Shutki Recipe | @Luxmisculinary",
+    youtubeId: "TKaHxLiiiVQ",
+    category: "Culinary",
+    duration: "3:24",
+    description: "Deeply savory and pungent salted Hilsa fish head cooked with sweet pumpkin (Kumra), heavy onions, tomatoes, and traditional spices.",
+    publishDate: "April 30, 2026",
+    thumbnail: "https://img.youtube.com/vi/TKaHxLiiiVQ/hqdefault.jpg"
+  },
+  {
+    id: "vid_16",
+    title: "বাঙালীর ঐতিহ্যবাহী মজাদার টমেটো চাটনি | Tomato Chutney Recipe | Chutney Recipe | Chutney | @Luxmisculinary",
+    youtubeId: "xjtBswHUisg",
+    category: "Culinary",
+    duration: "5:25",
+    description: "Spicy and tangy Bengali tomato chutney, a perfect accompaniment to any festive lunch or comforting plate of khichuri.",
+    publishDate: "April 28, 2026",
+    thumbnail: "https://img.youtube.com/vi/xjtBswHUisg/hqdefault.jpg"
+  },
+  {
+    id: "vid_17",
+    title: "Beetroot Recipe | Beetroot Vorta | Beetroot Bata | মজাদার স্বাস্থ্যকর বিটরুট ভর্তা | বীটরুট রেসিপি | @Luxmisculinary",
+    youtubeId: "_P81NHWBmVY",
+    category: "Culinary",
+    duration: "3:10",
+    description: "Healthy and stunning pink mashed Beetroot Vorta. Made with toasted red dry chilies and pure mustard oil.",
+    publishDate: "April 20, 2026",
+    thumbnail: "https://img.youtube.com/vi/_P81NHWBmVY/hqdefault.jpg"
+  },
+  {
+    id: "vid_18",
+    title: "Aloo Paratha Recipe | 2 Types Aloo Paratha | how to make aloo paratha | @Luxmisculinary",
+    youtubeId: "9g5bqp3AdKw",
+    category: "Culinary",
+    duration: "7:30",
+    description: "Master two distinct techniques of making perfect, non-bursting, pillowy potato-stuffed flatbreads (Aloo Parathas) easily at home.",
+    publishDate: "April 15, 2026",
+    thumbnail: "https://img.youtube.com/vi/9g5bqp3AdKw/hqdefault.jpg"
+  },
+  {
+    id: "vid_19",
+    title: "Dudh Chitoi Pitha Recipe | ব্লেন্ডারে পিঠার গোলা তৈরিসহ সহজেই পারফেক্ট দুধ চিতই পিঠা রেসিপি | @Luxmisculinary",
+    youtubeId: "spQDSPX9xR4",
+    category: "Culinary",
+    duration: "6:07",
+    description: "A traditional Bengali winter sweet: spongy, porous Chitoi Pitha soaked overnight in milk and sweet date-palm syrup.",
+    publishDate: "April 08, 2026",
+    thumbnail: "https://img.youtube.com/vi/spQDSPX9xR4/hqdefault.jpg"
+  },
+  {
+    id: "vid_20",
+    title: "How to Make Rice Flour at Home | সহজেই ঘরে তৈরি চালের গুঁড়া রেসিপি | @Luxmisculinary",
+    youtubeId: "VNWyWn-fQTk",
+    category: "Handicraft",
+    duration: "3:17",
+    description: "A simple step-by-step masterclass demonstrating the hand-craft of washing, soaking, drying, and grinding perfect rice flour for pitha making.",
+    publishDate: "April 02, 2026",
+    thumbnail: "https://img.youtube.com/vi/VNWyWn-fQTk/hqdefault.jpg"
+  },
+  {
+    id: "vid_21",
+    title: "Chitoi Pitha Recipe | ব্লেন্ডারে গোলা তৈরিসহ সহজেই ছিদ্রযুক্ত নরম তুলতুলে চিতই পিঠা রেসিপি | @Luxmisculinary",
+    youtubeId: "OtYxtsA6rPw",
+    category: "Culinary",
+    duration: "4:22",
+    description: "Whip up extremely soft, beautifully porous Chitoi Pitha in a standard kitchen oven or on a clay skillet. Troubleshooting included.",
+    publishDate: "March 28, 2026",
+    thumbnail: "https://img.youtube.com/vi/OtYxtsA6rPw/hqdefault.jpg"
+  },
+  {
+    id: "vid_22",
+    title: "Teler Pitha Recipe | তেলের পিঠা রেসিপি | তেলের পিঠা তৈরির সব টিপস সহ | @Luxmisculinary",
+    youtubeId: "fQcZJamCia8",
+    category: "Culinary",
+    duration: "5:37",
+    description: "How to get perfectly swollen, crispy-edged sweet fried rice flour cakes (Teler Pitha) every single time.",
+    publishDate: "March 20, 2026",
+    thumbnail: "https://img.youtube.com/vi/fQcZJamCia8/hqdefault.jpg"
+  }
+];

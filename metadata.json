@@ -1,0 +1,6 @@
+{
+  "name": "Luxmi's Culinary & Crafts",
+  "description": "A high-fidelity hub for the Luxmisculinary YouTube channel, featuring searchable recipes, step-by-step handicrafts, design blogs, a filterable video hub, and an interactive Gemini AI assistant for custom meal & craft planning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
