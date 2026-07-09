@@ -1,6 +1,6 @@
 node_modules/
 build/
-dist/
+# dist/ (Allowed for direct cPanel deployment)
 coverage/
 .DS_Store
 *.log
