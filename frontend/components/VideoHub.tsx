@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react";
-import { VIDEOS } from "../data";
 import { VideoItem } from "../types";
 import { Play, Calendar, Clock, Film, Youtube, Search, CheckCircle, ExternalLink, RefreshCw } from "lucide-react";
 import { motion } from "motion/react";
 
 interface VideoHubProps {
+  videos: VideoItem[];
   onNavigateTab: (tab: string) => void;
   targetVideoUrl?: string;
   clearTargetVideoUrl: () => void;
 }
 
-export default function VideoHub({ onNavigateTab, targetVideoUrl, clearTargetVideoUrl }: VideoHubProps) {
-  const [selectedVideo, setSelectedVideo] = useState<VideoItem>(VIDEOS[0]);
+export default function VideoHub({ videos, onNavigateTab, targetVideoUrl, clearTargetVideoUrl }: VideoHubProps) {
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem>(videos[0] || {} as VideoItem);
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // Sync selected video if dynamic load updates the videos list
+  useEffect(() => {
+    if (videos.length > 0 && (!selectedVideo || !selectedVideo.id)) {
+      setSelectedVideo(videos[0]);
+    }
+  }, [videos, selectedVideo]);
 
   // Reset play state when video selection changes
   useEffect(() => {
@@ -23,11 +30,11 @@ export default function VideoHub({ onNavigateTab, targetVideoUrl, clearTargetVid
 
   // Hook to handle deep navigation from Recipes or Crafts list
   useEffect(() => {
-    if (targetVideoUrl) {
+    if (targetVideoUrl && videos.length > 0) {
       // Find matching mock video based on URL
       // (For this prototype, we cross-reference index tags or use fallback)
       const isCraft = targetVideoUrl.includes("craft");
-      const matched = VIDEOS.find(v => {
+      const matched = videos.find(v => {
         if (isCraft) return v.category === "Handicraft" && targetVideoUrl.includes(v.id.replace("vid_", ""));
         return v.category === "Culinary" && targetVideoUrl.includes(v.id.replace("vid_", ""));
       });
@@ -36,15 +43,15 @@ export default function VideoHub({ onNavigateTab, targetVideoUrl, clearTargetVid
         setSelectedVideo(matched);
       } else {
         // Fallback to first matching category
-        const fallback = VIDEOS.find(v => isCraft ? v.category === "Handicraft" : v.category === "Culinary");
+        const fallback = videos.find(v => isCraft ? v.category === "Handicraft" : v.category === "Culinary");
         if (fallback) setSelectedVideo(fallback);
       }
       clearTargetVideoUrl();
     }
-  }, [targetVideoUrl]);
+  }, [targetVideoUrl, videos]);
 
   // Filtering
-  const filteredVideos = VIDEOS.filter(video => {
+  const filteredVideos = videos.filter(video => {
     const matchesSearch = video.title.toLowerCase().includes(search.toLowerCase()) || 
                           video.description.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = categoryFilter === "All" || video.category === categoryFilter;
@@ -189,7 +196,7 @@ export default function VideoHub({ onNavigateTab, targetVideoUrl, clearTargetVid
               
               {/* Horizontal Scroll Line of Thumbnails */}
               <div className="flex gap-4 overflow-x-auto pb-2.5 scrollbar-thin scrollbar-thumb-amber-200/60 scrollbar-track-stone-100/60">
-                {VIDEOS.map((v) => {
+                {videos.map((v) => {
                   const isCurrent = v.id === selectedVideo.id;
                   return (
                     <button

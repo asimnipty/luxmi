@@ -1,5 +1,7 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
+import multer from "multer";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
@@ -11,6 +13,154 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+// Setup uploads directory
+const uploadsDir = path.join(process.cwd(), "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+app.use("/uploads", express.static(uploadsDir));
+
+// Setup multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadsDir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + "-" + uniqueSuffix + ext);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 100 * 1024 * 1024, // 100MB max payload to support direct video file uploads
+  },
+});
+
+// Helper to read database
+function readDatabase() {
+  const dbPath = path.join(process.cwd(), "backend", "db.json");
+  try {
+    const raw = fs.readFileSync(dbPath, "utf-8");
+    return JSON.parse(raw);
+  } catch (error) {
+    console.error("Failed to read database:", error);
+    return { recipes: [], handicrafts: [], blogs: [], videos: [] };
+  }
+}
+
+// Helper to write database
+function writeDatabase(data: any) {
+  const dbPath = path.join(process.cwd(), "backend", "db.json");
+  try {
+    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    return true;
+  } catch (error) {
+    console.error("Failed to write database:", error);
+    return false;
+  }
+}
+
+// GET all dynamic data
+app.get("/api/data", (req, res) => {
+  res.json(readDatabase());
+});
+
+// POST upload file
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file was uploaded." });
+  }
+  const fileUrl = `/uploads/${req.file.filename}`;
+  res.json({ url: fileUrl });
+});
+
+// POST new recipe
+app.post("/api/recipes", (req, res) => {
+  const db = readDatabase();
+  const newRecipe = {
+    id: "rec_" + Date.now(),
+    ...req.body,
+  };
+  db.recipes.unshift(newRecipe);
+  writeDatabase(db);
+  res.json(newRecipe);
+});
+
+// DELETE recipe
+app.delete("/api/recipes/:id", (req, res) => {
+  const { id } = req.params;
+  const db = readDatabase();
+  db.recipes = db.recipes.filter((item: any) => item.id !== id);
+  writeDatabase(db);
+  res.json({ success: true });
+});
+
+// POST new handicraft
+app.post("/api/crafts", (req, res) => {
+  const db = readDatabase();
+  const newCraft = {
+    id: "craft_" + Date.now(),
+    ...req.body,
+  };
+  db.handicrafts.unshift(newCraft);
+  writeDatabase(db);
+  res.json(newCraft);
+});
+
+// DELETE handicraft
+app.delete("/api/crafts/:id", (req, res) => {
+  const { id } = req.params;
+  const db = readDatabase();
+  db.handicrafts = db.handicrafts.filter((item: any) => item.id !== id);
+  writeDatabase(db);
+  res.json({ success: true });
+});
+
+// POST new video
+app.post("/api/videos", (req, res) => {
+  const db = readDatabase();
+  const newVideo = {
+    id: "vid_" + Date.now(),
+    ...req.body,
+  };
+  db.videos.unshift(newVideo);
+  writeDatabase(db);
+  res.json(newVideo);
+});
+
+// DELETE video
+app.delete("/api/videos/:id", (req, res) => {
+  const { id } = req.params;
+  const db = readDatabase();
+  db.videos = db.videos.filter((item: any) => item.id !== id);
+  writeDatabase(db);
+  res.json({ success: true });
+});
+
+// POST new blog post
+app.post("/api/blogs", (req, res) => {
+  const db = readDatabase();
+  const newBlog = {
+    id: "blog_" + Date.now(),
+    ...req.body,
+  };
+  db.blogs.unshift(newBlog);
+  writeDatabase(db);
+  res.json(newBlog);
+});
+
+// DELETE blog post
+app.delete("/api/blogs/:id", (req, res) => {
+  const { id } = req.params;
+  const db = readDatabase();
+  db.blogs = db.blogs.filter((item: any) => item.id !== id);
+  writeDatabase(db);
+  res.json({ success: true });
+});
 
 // Initialize Gemini SDK lazily to handle missing keys gracefully
 let aiClient: GoogleGenAI | null = null;

@@ -1,17 +1,17 @@
 import { useState, useMemo } from "react";
-import { RECIPES } from "../data";
 import { Recipe } from "../types";
 import { Heart, Clock, Award, BookOpen, UtensilsCrossed, Search, Filter, PlayCircle, ChefHat } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface RecipeArchiveProps {
+  recipes: Recipe[];
   onToggleFavorite: (id: string) => void;
   favorites: string[];
   activeTab: string;
   onGoToVideo: (url: string) => void;
 }
 
-export default function RecipeArchive({ onToggleFavorite, favorites, onGoToVideo }: RecipeArchiveProps) {
+export default function RecipeArchive({ recipes, onToggleFavorite, favorites, onGoToVideo }: RecipeArchiveProps) {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
   const [difficultyFilter, setDifficultyFilter] = useState<string>("All");
@@ -22,7 +22,7 @@ export default function RecipeArchive({ onToggleFavorite, favorites, onGoToVideo
 
   // Filtered recipes
   const filteredRecipes = useMemo(() => {
-    return RECIPES.filter((recipe) => {
+    return recipes.filter((recipe) => {
       const matchesSearch = recipe.title.toLowerCase().includes(search.toLowerCase()) || 
                             recipe.description.toLowerCase().includes(search.toLowerCase()) ||
                             recipe.ingredients.some(ing => ing.toLowerCase().includes(search.toLowerCase())) ||
@@ -31,7 +31,7 @@ export default function RecipeArchive({ onToggleFavorite, favorites, onGoToVideo
       const matchesDifficulty = difficultyFilter === "All" || recipe.difficulty === difficultyFilter;
       return matchesSearch && matchesCategory && matchesDifficulty;
     });
-  }, [search, categoryFilter, difficultyFilter]);
+  }, [recipes, search, categoryFilter, difficultyFilter]);
 
   return (
     <div className="space-y-8 animate-fade-in">

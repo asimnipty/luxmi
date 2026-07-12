@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { BLOGS } from "../data";
 import { BlogPost } from "../types";
 import { Calendar, User, Clock, ArrowRight, BookOpen, Sparkles, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function BlogSection() {
+interface BlogSectionProps {
+  blogs: BlogPost[];
+}
+
+export default function BlogSection({ blogs }: BlogSectionProps) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
   return (
@@ -21,7 +24,7 @@ export default function BlogSection() {
 
       {/* Main Grid List */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {BLOGS.map((post) => (
+        {blogs.map((post) => (
           <div
             key={post.id}
             className="bg-white rounded-2xl border border-stone-200/80 overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between h-full group"

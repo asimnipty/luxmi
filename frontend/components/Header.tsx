@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Youtube, Heart, Sparkles, BookOpen, Scissors, ChefHat, PlayCircle } from "lucide-react";
+import { Youtube, Heart, Sparkles, BookOpen, Scissors, ChefHat, PlayCircle, Lock } from "lucide-react";
 
 interface HeaderProps {
   activeTab: string;
@@ -77,6 +77,19 @@ export default function Header({ activeTab, setActiveTab, favoritesCount }: Head
               <span className="bg-stone-200 text-stone-800 rounded-full px-1.5 py-0.5 text-[10px] font-bold">
                 {favoritesCount}
               </span>
+            </button>
+
+            {/* Admin Portal Button */}
+            <button 
+              onClick={() => setActiveTab("admin")}
+              className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium border transition-colors cursor-pointer ${
+                activeTab === "admin"
+                  ? "bg-amber-100 border-amber-300 text-amber-900 font-bold"
+                  : "bg-stone-50 hover:bg-stone-100 text-stone-700 border-stone-200/60"
+              }`}
+            >
+              <Lock className={`w-3.5 h-3.5 ${activeTab === "admin" ? "text-amber-700" : "text-stone-400"}`} />
+              <span>Admin Portal</span>
             </button>
           </div>
 

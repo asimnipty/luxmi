@@ -1,16 +1,16 @@
 import { useState, useMemo } from "react";
-import { HANDICRAFTS } from "../data";
 import { HandiCraft } from "../types";
 import { Heart, Clock, Award, Scissors, BookOpen, Search, Filter, PlayCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface CraftShowcaseProps {
+  crafts: HandiCraft[];
   onToggleFavorite: (id: string) => void;
   favorites: string[];
   onGoToVideo: (url: string) => void;
 }
 
-export default function CraftShowcase({ onToggleFavorite, favorites, onGoToVideo }: CraftShowcaseProps) {
+export default function CraftShowcase({ crafts, onToggleFavorite, favorites, onGoToVideo }: CraftShowcaseProps) {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
   const [selectedCraft, setSelectedCraft] = useState<HandiCraft | null>(null);
@@ -20,7 +20,7 @@ export default function CraftShowcase({ onToggleFavorite, favorites, onGoToVideo
 
   // Filtered handicrafts
   const filteredCrafts = useMemo(() => {
-    return HANDICRAFTS.filter((craft) => {
+    return crafts.filter((craft) => {
       const matchesSearch = craft.title.toLowerCase().includes(search.toLowerCase()) || 
                             craft.description.toLowerCase().includes(search.toLowerCase()) ||
                             craft.materials.some(mat => mat.toLowerCase().includes(search.toLowerCase())) ||
@@ -28,7 +28,7 @@ export default function CraftShowcase({ onToggleFavorite, favorites, onGoToVideo
       const matchesCategory = categoryFilter === "All" || craft.category === categoryFilter;
       return matchesSearch && matchesCategory;
     });
-  }, [search, categoryFilter]);
+  }, [crafts, search, categoryFilter]);
 
   return (
     <div className="space-y-8 animate-fade-in">

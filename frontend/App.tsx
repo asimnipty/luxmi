@@ -5,14 +5,41 @@ import CraftShowcase from "./components/CraftShowcase";
 import VideoHub from "./components/VideoHub";
 import BlogSection from "./components/BlogSection";
 import AiAssistant from "./components/AiAssistant";
+import AdminPanel from "./components/AdminPanel";
 import { Heart, Youtube, ExternalLink, Sparkles, ChefHat, Scissors, Film, BookOpen } from "lucide-react";
+import { RECIPES, HANDICRAFTS, BLOGS, VIDEOS } from "./data";
+import { Recipe, HandiCraft, VideoItem, BlogPost } from "./types";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("recipes");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [targetVideoUrl, setTargetVideoUrl] = useState<string | undefined>(undefined);
 
-  // Load favorites from localStorage
+  // Dynamic state loaded from server, initialized with static fallbacks
+  const [recipes, setRecipes] = useState<Recipe[]>(RECIPES);
+  const [crafts, setCrafts] = useState<HandiCraft[]>(HANDICRAFTS);
+  const [videos, setVideos] = useState<VideoItem[]>(VIDEOS);
+  const [blogs, setBlogs] = useState<BlogPost[]>(BLOGS);
+
+  // Function to load data from Express API
+  const fetchDynamicData = () => {
+    fetch("/api/data")
+      .then((res) => {
+        if (!res.ok) throw new Error("Server error");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.recipes && data.recipes.length > 0) setRecipes(data.recipes);
+        if (data.handicrafts && data.handicrafts.length > 0) setCrafts(data.handicrafts);
+        if (data.videos && data.videos.length > 0) setVideos(data.videos);
+        if (data.blogs && data.blogs.length > 0) setBlogs(data.blogs);
+      })
+      .catch((err) => {
+        console.warn("Failed to fetch dynamic content, running with local static templates.", err);
+      });
+  };
+
+  // Load favorites from localStorage and fetch server data on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem("luxmi_favs");
@@ -22,6 +49,8 @@ export default function App() {
     } catch (e) {
       console.error("Could not parse favorites:", e);
     }
+    
+    fetchDynamicData();
   }, []);
 
   // Handle toggling favorites
@@ -60,6 +89,7 @@ export default function App() {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full">
         {activeTab === "recipes" && (
           <RecipeArchive 
+            recipes={recipes}
             onToggleFavorite={handleToggleFavorite} 
             favorites={favorites} 
             activeTab={activeTab}
@@ -69,6 +99,7 @@ export default function App() {
 
         {activeTab === "crafts" && (
           <CraftShowcase 
+            crafts={crafts}
             onToggleFavorite={handleToggleFavorite} 
             favorites={favorites} 
             onGoToVideo={handleGoToVideo}
@@ -77,6 +108,7 @@ export default function App() {
 
         {activeTab === "videos" && (
           <VideoHub 
+            videos={videos}
             onNavigateTab={(tab) => {
               setActiveTab(tab);
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -87,11 +119,21 @@ export default function App() {
         )}
 
         {activeTab === "blog" && (
-          <BlogSection />
+          <BlogSection blogs={blogs} />
         )}
 
         {activeTab === "assistant" && (
           <AiAssistant />
+        )}
+
+        {activeTab === "admin" && (
+          <AdminPanel 
+            recipes={recipes}
+            crafts={crafts}
+            videos={videos}
+            blogs={blogs}
+            onDataChange={fetchDynamicData}
+          />
         )}
       </main>
 
